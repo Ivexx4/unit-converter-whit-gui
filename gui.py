@@ -1,7 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-
-
 # Base class for unit converter GUI
 class ConverterApp(tk.Frame):
     def __init__(self, parent, converter, title, *args, **kwargs):
@@ -9,14 +7,7 @@ class ConverterApp(tk.Frame):
         self.converter = converter
         self.title = title
         self.create_widgets()
-        self.configure_triggers()
 
-    def configure_triggers(self):
-        # Bind events to trigger conversion
-        self.value_entry.bind("<KeyRelease>", self.convert)
-        self.origin_unit_combobox.bind("<<ComboboxSelected>>", self.convert)
-        self.final_unit_combobox.bind("<<ComboboxSelected>>", self.convert)
-        self.is_interval_checkbox.bind("<ButtonRelease-1>", self.convert)
     def configure_rows(self):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=1)
@@ -29,12 +20,11 @@ class ConverterApp(tk.Frame):
         self.create_error_label()
 
     def create_title_frame(self):
-            self.title_fr = tk.Frame(self)  # Create a frame for the title
-            self.title_fr.grid(row=0, column=0, pady=10)  # Span across the columns
+            self.title_fr = tk.Frame(self)
+            self.title_fr.grid(row=0, column=0, pady=10)
             title_label = tk.Label(self.title_fr, text=self.title, font=("Helvetica", 16))
             title_label.place(relx=0.5, rely=0.3, anchor="center")
-            # Configure the title frame to expand evenly
-            self.grid_columnconfigure(0, weight=1)  # Makes the column stretchable
+            self.grid_columnconfigure(0, weight=1)
             self.grid_rowconfigure(0, weight=1)
             self.title_fr.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
@@ -42,26 +32,34 @@ class ConverterApp(tk.Frame):
         converter_frame = tk.Frame(self)
         self.validate_cmd = self.register(self.validate_input)
         self.value_entry = tk.Entry(converter_frame, validate="key", validatecommand=(self.validate_cmd, "%P"))
-        self.value_entry.grid(row=0, column=1, padx=5, sticky="ew")  # "ew" to make the widget expand in both directions
-        # Allow the input field to expand with window resizing
-        self.grid_columnconfigure(1, weight=1)  # Column 1 (where the entry widget is) can expand
+        self.value_entry.grid(row=0, column=1, padx=5, sticky="ew")
+        self.value_entry.bind("<KeyRelease>", self.convert)
+        self.grid_columnconfigure(1, weight=1)
         self.origin_unit_combobox = ttk.Combobox(converter_frame, values=self.converter.units)
         self.origin_unit_combobox.grid(row=0, column=2, padx=5, sticky="ew")
-        self.origin_unit_combobox.set(self.converter.units[0])  # Default to first unit
+        self.origin_unit_combobox.set(self.converter.units[0])
         self.final_unit_combobox = ttk.Combobox(converter_frame, values=self.converter.units)
         equals_label = tk.Label(converter_frame, text="=")
         equals_label.grid(row=0, column=3)
         self.result_label = tk.Label(converter_frame, text=" ")
         self.result_label.grid(row=0, column=4, padx=5)
         self.final_unit_combobox.grid(row=0, column=5, padx=5, sticky="ew")
-        self.final_unit_combobox.set(self.converter.units[1])  # Default to second unit
+        self.final_unit_combobox.set(self.converter.units[1])
         converter_frame.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
         self.grid_rowconfigure(1, weight=1)
+        self.origin_unit_combobox.bind("<<ComboboxSelected>>", self.convert)
+        self.final_unit_combobox.bind("<<ComboboxSelected>>", self.convert)
+
     def create_utils_frame(self):
         utils_frame = tk.Frame(self)
-        self.is_interval_var = tk.BooleanVar()
-        self.is_interval_checkbox = tk.Checkbutton(utils_frame, text="Interval (delta)", variable=self.is_interval_var)
-        self.is_interval_checkbox.grid(column=0, pady=5)
+        if any(valor != 0 for valor in self.converter.offsets):
+            self.is_interval_var = tk.BooleanVar()
+            self.is_interval_checkbox = tk.Checkbutton(utils_frame, text="Interval (delta)", variable=self.is_interval_var)
+            self.is_interval_checkbox.grid(column=0, pady=5)
+            self.is_interval_checkbox.bind("<ButtonRelease-1>", self.convert)
+        else :
+            self.is_interval_var = tk.BooleanVar(value=True)
+
         self.swap_button = tk.Button(self, text="Swap Units", command=self.swap_units)
         self.swap_button.grid(column=2, padx=10, pady=5)
         utils_frame.grid(row=2, sticky="nsew")
