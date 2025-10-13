@@ -1,9 +1,15 @@
 class Converter:
     def __init__(self, units, factors, offsets=None):
         self.units = units  # List of unit names (e.g., ['Fahrenheit', 'Celsius'])
-        self.factors = factors  # Conversion factors (e.g., Celsius to Fahrenheit = 9/5)
+        if len(factors) != len(units):
+            raise ValueError("Number of units and factors must match")
+        else:
+            self.factors = factors  # Conversion factors (e.g., Celsius to Fahrenheit = 9/5)
         if offsets:
-            self.offsets = offsets  # Offsets (Fahrenheit starts at 32, Celsius starts at 0)
+            if len(offsets) != len(self.units):
+                raise ValueError("Number of units and offsets must match")
+            else:
+                self.offsets = offsets  # Offsets (Fahrenheit starts at 32, Celsius starts at 0)
         else:
             self.offsets = [0 for i in range(len(self.units))]
 
