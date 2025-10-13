@@ -1,8 +1,11 @@
 class Converter:
-    def __init__(self, units, factors, offsets):
+    def __init__(self, units, factors, offsets=None):
         self.units = units  # List of unit names (e.g., ['Fahrenheit', 'Celsius'])
         self.factors = factors  # Conversion factors (e.g., Celsius to Fahrenheit = 9/5)
-        self.offsets = offsets  # Offsets (Fahrenheit starts at 32, Celsius starts at 0)
+        if offsets:
+            self.offsets = offsets  # Offsets (Fahrenheit starts at 32, Celsius starts at 0)
+        else:
+            self.offsets = [0 for i in range(len(self.units))]
 
     def convert(self, value, origin_unit, final_unit,delta=False):
         # Check if both units are valid
