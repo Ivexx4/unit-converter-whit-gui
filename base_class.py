@@ -28,7 +28,7 @@ class Converter:
         else:
         # First, adjust the value for the origin unit offset (if any)
             base_value = (value - self.offsets[origin_index])/self.factors[origin_index]
-
         # Now, convert to the final unit
             final_value = base_value * self.factors[final_index] + self.offsets[final_index]
+
         return final_value
