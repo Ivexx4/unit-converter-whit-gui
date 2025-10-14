@@ -1,6 +1,6 @@
 from base_class import Converter
 Temperature = Converter(
-    ["Fahrenheit", "Celsius","Kelvin","Rankine","Delisle","Reaumur","Newton","Rømer"], [1.8,1,1,1.8,-1.5,0.8,0.33,21/40],offsets=[32, 0,273.15,491.67,150,0,0,7.5] # Units
+    ["°F", "ºC","K","ºR","ºD","ºRe","ºN","ºRø"], [1.8,1,1,1.8,-1.5,0.8,0.33,21/40],offsets=[32, 0,273.15,491.67,150,0,0,7.5] # Units
 )
 Length = Converter(
     units=["Meters", "Kilometers", "Miles", "Yards", "Feet"],
@@ -16,10 +16,10 @@ Weight = Converter(
 
 if __name__ == "__main__":
 # Example conversions
-    print(f"75 Delisle is {Temperature.convert(75, 'Delisle', 'Celsius'):.2f}°C.")
-    print(f"32 Fahrenheit is {Temperature.convert(32, 'Fahrenheit', 'Celsius'):.2f}°C.")
-    print(f"300 Kelvin is {Temperature.convert(300, 'Kelvin', 'Fahrenheit'):.2f}°F.")
-    print(f"25 Celsius is {Temperature.convert(25, 'Celsius', 'Rankine'):.2f}°R.")
-    print(f"10 Reaumur is {Temperature.convert(10, 'Reaumur', 'Kelvin'):.2f} K.")
-    print(f"10 Delisle is {Temperature.convert(10, 'Delisle', 'Newton'):.2f}°N.")
-    print(f"10 Rømer is {Temperature.convert(10, 'Rømer', 'Celsius'):.2f}°C.")
+    print(f"75 ºD = {Temperature.convert(75, "ºD", "ºC"):.2f}°C.")
+    print(f"32 ºF = {Temperature.convert(32, "°F", "ºC"):.2f}°C.")
+    print(f"300 K = {Temperature.convert(300, 'K', '°F'):.2f}°F.")
+    print(f"25 ºC = {Temperature.convert(25, "ºC", "ºR"):.2f}°R.")
+    print(f"10 ºRe = {Temperature.convert(10, "ºRe", "K"):.2f} K.")
+    print(f"10 ºD = {Temperature.convert(10, "ºD", 'ºN'):.2f}°N.")
+    print(f"10 ºRø = {Temperature.convert(10, 'ºRø', "ºC"):.2f}°C.")
