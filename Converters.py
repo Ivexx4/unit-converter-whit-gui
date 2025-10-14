@@ -16,10 +16,10 @@ Weight = Converter(
 
 if __name__ == "__main__":
 # Example conversions
-    print(f"75 Delisle é {Temperature.convert(75, 'Delisle', 'Celsius'):.2f}°C.")  # Esperado: 50.0°C
-    print(f"32 Fahrenheit é {Temperature.convert(32, 'Fahrenheit', 'Celsius'):.2f}°C.")  # Esperado: 0.0°C
-    print(f"300 Kelvin é {Temperature.convert(300, 'Kelvin', 'Fahrenheit'):.2f}°F.")  # Esperado: 80.33°F
-    print(f"25 Celsius é {Temperature.convert(25, 'Celsius', 'Rankine'):.2f}°R.")  # Esperado: 536.67°R
-    print(f"10 Reaumur é {Temperature.convert(10, 'Reaumur', 'Kelvin'):.2f} K.")  # Esperado: 285.65 K
-    print(f"10 Delisle é {Temperature.convert(10, 'Delisle', 'Newton'):.2f}°N.")  # Esperado: 22.00°N
-    print(f"10 Rømer é {Temperature.convert(10, 'Rømer', 'Celsius'):.2f}°C.")
+    print(f"75 Delisle is {Temperature.convert(75, 'Delisle', 'Celsius'):.2f}°C.")
+    print(f"32 Fahrenheit is {Temperature.convert(32, 'Fahrenheit', 'Celsius'):.2f}°C.")
+    print(f"300 Kelvin is {Temperature.convert(300, 'Kelvin', 'Fahrenheit'):.2f}°F.")
+    print(f"25 Celsius is {Temperature.convert(25, 'Celsius', 'Rankine'):.2f}°R.")
+    print(f"10 Reaumur is {Temperature.convert(10, 'Reaumur', 'Kelvin'):.2f} K.")
+    print(f"10 Delisle is {Temperature.convert(10, 'Delisle', 'Newton'):.2f}°N.")
+    print(f"10 Rømer is {Temperature.convert(10, 'Rømer', 'Celsius'):.2f}°C.")
