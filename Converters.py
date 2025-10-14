@@ -1,18 +1,7 @@
 from base_class import Converter
 Temperature = Converter(
-    ["°F", "ºC","K","ºR","ºD","ºRe","ºN","ºRø"], [1.8,1,1,1.8,-1.5,0.8,0.33,21/40],offsets=[32, 0,273.15,491.67,150,0,0,7.5] # Units
+    {"°F":(1.8,32),"ºC":(1,0),"K":(1,273.15),"ºR":(1.8,491.67),"ºD":(-1.5,150),"ºRe":(0.8,0),"ºN":(0.33,0),"ºRø":(21/40,7.5)}# Units
 )
-Length = Converter(
-    units=["Meters", "Kilometers", "Miles", "Yards", "Feet"],
-    factors=[1, 0.001, 0.000621371, 1.09361, 3.28084],
-    offsets=[0, 0, 0, 0, 0]
-)
-
-# Weight Converter (Grams, Kilograms, Pounds, Ounces)
-Weight = Converter(
-    units=["Grams", "Kilograms", "Pounds", "Ounces"],
-    factors=[1, 0.001, 0.00220462, 0.035274],
-    offsets=[0, 0, 0, 0])
 
 if __name__ == "__main__":
 # Example conversions
