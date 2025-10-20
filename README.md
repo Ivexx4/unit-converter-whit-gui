@@ -67,9 +67,29 @@ A flexible and extensible unit conversion library with a graphical user interfac
 
 ## Usage
 
+### Graphical User Interface
+
+The easiest way to use the converter is through the graphical user interface:
+
+```bash
+python gui.py
+```
+
+The GUI provides a user-friendly interface with the following features:
+
+- **Tabbed Interface**: Separate tabs for Temperature, Length, Weight, and Volume conversions
+- **Input Validation**: Ensures valid numeric input and handles errors gracefully
+- **Unit Swapping**: Quickly swap between source and target units
+- **Delta/Interval Conversion**: Support for both absolute values and intervals
+- **Themes**: Multiple visual themes available through the View menu
+- **Keyboard Shortcuts**: Convenient shortcuts for common actions
+- **Copy to Clipboard**: Easily copy conversion results to the clipboard
+
+For detailed instructions on using the GUI, see the [GUI documentation](docs/gui.md).
+
 ### Command Line
 
-You can use the converters directly in your Python code:
+You can also use the converters directly in your Python code:
 
 ```python
 # Temperature conversions
@@ -117,21 +137,6 @@ result = Volume.convert(1, "m³", "L")
 print(f"1 m³ = {result:.2f} L")  # Output: 1 m³ = 1000.00 L
 ```
 
-### Graphical User Interface
-
-To launch the GUI application:
-
-```python
-python gui.py
-```
-
-This will open a tabbed interface with multiple converters (Temperature, Length, Weight). The GUI allows you to:
-1. Enter a value to convert
-2. Select the source unit
-3. Select the target unit
-4. View the converted result
-5. Toggle between absolute and interval (delta) conversions
-6. Swap units with a single button click
 
 ## Extending the Converter
 
@@ -162,36 +167,13 @@ The converter takes a dictionary where:
 - Values are tuples of (scale_factor, offset)
   - For simple units like area, offset is typically 0
   - For units like temperature, offset is used for zero point differences
-
-### Adding Support to the GUI
-
-To add the new converter to the GUI, update the `gui.py` file:
-
-1. Create a new converter app class:
-```python
-class AreaConverterApp(ConverterApp):
-    def __init__(self, parent, converter):
-        super().__init__(parent, converter, "Area Converter")
-```
-
-2. Add the converter to the list in the main section:
-```python
-converters = [
-    (Temperature, "Temperature"),
-    (Length, "Length"),
-    (Weight, "Weight"),
-    (Area, "Area")  # Add the new converter
-]
-```
-
 ## Project Structure
 
 - `base_class.py`: Contains the base `Converter` class
 - `Converters.py`: Implements specific converters (Temperature, Length, Weight, and Volume)
-- `gui.py`: Provides the graphical user interface with support for Temperature, Length, and Weight converters
 - `docs/`: Contains detailed documentation for all components
 - `LICENCE`: License information
 
 ## License
-
-See the [LICENCE](LICENCE) file for details.
+this project is licenced with the MIT license
+See the [LICENSE](LICENSE) file for details.

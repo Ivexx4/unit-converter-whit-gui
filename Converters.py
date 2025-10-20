@@ -107,12 +107,4 @@ if __name__ == "__main__":
         print(f"1 m³ = {Volume.convert(1, 'm³', 'L'):.2f} L.")
         print(f"1 cup = {Volume.convert(1, 'cup', 'mL'):.2f} mL.")
 
-    #test()
-    print(f"left and right margins: {Length.convert(0.75, 'in', 'cm'):.2f} cm.")
-    print(f"column width: {Length.convert(3.375, 'in', 'cm'):.2f} cm.")
-    print(f": gap between columns: {Length.convert(0.25, 'in', 'cm'):.2f} cm.")
-    print(f": top margin first page: {Length.convert(1.375, 'in', 'cm'):.2f} cm.")
-    print(f": top margin other pages: {Length.convert(0.75, 'in', 'cm'):.2f} cm.")
-    print(f": bottom margin: : {Length.convert(1.25, 'in', 'cm'):.2f} cm.")
-    print(f": column height first page: {Length.convert(6.625, 'in', 'cm'):.2f} cm.")
-    print(f": column height other pages: {Length.convert(9, 'in', 'cm'):.2f} cm.")
+    test()
