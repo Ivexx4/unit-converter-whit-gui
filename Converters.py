@@ -1,9 +1,42 @@
+"""
+Unit Converters Module
+
+This module implements specific converter instances using the base Converter class.
+It provides converters for Temperature, Length, Weight, and Volume units.
+
+Each converter is an instance of the Converter class, initialized with a dictionary
+of units and their conversion factors. The conversion factors are specified as
+tuples of (scale_factor, offset).
+
+Available Converters:
+    - Temperature: Convert between temperature scales (Celsius, Fahrenheit, Kelvin, etc.)
+    - Length: Convert between length units (meters, feet, inches, etc.)
+    - Weight: Convert between weight/mass units (kilograms, pounds, etc.)
+    - Volume: Convert between volume units (liters, gallons, etc.)
+
+Example Usage:
+    >>> from Converters import Temperature
+    >>> Temperature.convert(25, "ºC", "°F")
+    77.0
+"""
+
 from base_class import Converter
-Temperature = Converter(
-    {"°F":(1.8,32),"ºC":(1,0),"K":(1,273.15),"ºR":(1.8,491.67),"ºD":(-1.5,150),"ºRe":(0.8,0),"ºN":(0.33,0),"ºRø":(21/40,7.5)}# Units
+
+# Temperature converter - Converts between different temperature scales (Celsius, Fahrenheit, Kelvin, etc.)
+# Base unit: Celsius (ºC) with scale factor 1 and offset 0
+Temperature = Converter({
+    "°F":(1.8,32),
+    "ºC":(1,0),
+    "K":(1,273.15),
+    "ºR":(1.8,491.67),
+    "ºD":(-1.5,150),
+    "ºRe":(0.8,0),
+    "ºN":(0.33,0),
+    "ºRø":(21/40,7.5)}# Units
 )
 
-# Length converter
+# Length converter - Converts between different units of length/distance (meters, feet, inches, etc.)
+# Base unit: Meter (m) with scale factor 1 and offset 0
 Length = Converter({
     "m": (1, 0),      # meters (base unit)
     "km": (0.001, 0),  # kilometers (1 km = 1000 m, so scale factor is 0.001)
@@ -15,7 +48,8 @@ Length = Converter({
     "mi": (0.000621371, 0) # miles (1 m = 0.000621371 mi, so scale factor is 0.000621371)
 })
 
-# Weight converter
+# Weight converter - Converts between different units of weight/mass (kilograms, pounds, ounces, etc.)
+# Base unit: Kilogram (kg) with scale factor 1 and offset 0
 Weight = Converter({
     "kg": (1, 0),      # kilograms (base unit)
     "g": (1000, 0),    # grams (1 kg = 1000 g, so scale factor is 1000)
@@ -27,7 +61,8 @@ Weight = Converter({
     "uston": (0.00110231, 0) # US ton (1 kg = 0.00110231 US ton, so scale factor is 0.00110231)
 })
 
-# Volume converter
+# Volume converter - Converts between different units of volume (liters, gallons, cubic meters, etc.)
+# Base unit: Liter (L) with scale factor 1 and offset 0
 Volume = Converter({
     "L": (1, 0),        # liters (base unit)
     "mL": (1000, 0),    # milliliters (1 L = 1000 mL, so scale factor is 1000)
@@ -38,35 +73,46 @@ Volume = Converter({
     "fl_oz": (33.814, 0), # US fluid ounces (1 L = 33.814 fl_oz, so scale factor is 33.814)
     "cup": (4.16667, 0)  # US cups (1 L = 4.16667 cups, so scale factor is 4.16667)
 })
-
 if __name__ == "__main__":
+    def test():
     # Temperature conversion examples
-    print("\nTemperature Conversion Examples:")
-    print(f"75 ºD = {Temperature.convert(75, "ºD", "ºC"):.2f}°C.")
-    print(f"32 ºF = {Temperature.convert(32, "°F", "ºC"):.2f}°C.")
-    print(f"300 K = {Temperature.convert(300, 'K', '°F'):.2f}°F.")
-    print(f"25 ºC = {Temperature.convert(25, "ºC", "ºR"):.2f}°R.")
-    print(f"10 ºRe = {Temperature.convert(10, "ºRe", "K"):.2f} K.")
-    print(f"10 ºD = {Temperature.convert(10, "ºD", 'ºN'):.2f}°N.")
-    print(f"10 ºRø = {Temperature.convert(10, 'ºRø', "ºC"):.2f}°C.")
+        print("\nTemperature Conversion Examples:")
+        print(f"75 ºD = {Temperature.convert(75, "ºD", "ºC"):.2f}°C.")
+        print(f"32 ºF = {Temperature.convert(32, "°F", "ºC"):.2f}°C.")
+        print(f"300 K = {Temperature.convert(300, 'K', '°F'):.2f}°F.")
+        print(f"25 ºC = {Temperature.convert(25, "ºC", "ºR"):.2f}°R.")
+        print(f"10 ºRe = {Temperature.convert(10, "ºRe", "K"):.2f} K.")
+        print(f"10 ºD = {Temperature.convert(10, "ºD", 'ºN'):.2f}°N.")
+        print(f"10 ºRø = {Temperature.convert(10, 'ºRø', "ºC"):.2f}°C.")
     
     # Length conversion examples
-    print("\nLength Conversion Examples:")
-    print(f"1 m = {Length.convert(1, 'm', 'ft'):.2f} ft.")  # Should be about 3.28 ft
-    print(f"1 mi = {Length.convert(1, 'mi', 'km'):.2f} km.")  # Should be about 1.61 km
-    print(f"10 in = {Length.convert(10, 'in', 'cm'):.2f} cm.")  # Should be about 25.4 cm
-    print(f"100 yd = {Length.convert(100, 'yd', 'm'):.2f} m.")  # Should be about 91.44 m
+        print("\nLength Conversion Examples:")
+        print(f"1 m = {Length.convert(1, 'm', 'ft'):.2f} ft.")
+        print(f"1 mi = {Length.convert(1, 'mi', 'km'):.2f} km.")
+        print(f"10 in = {Length.convert(10, 'in', 'cm'):.2f} cm.")
+        print(f"100 yd = {Length.convert(100, 'yd', 'm'):.2f} m.")
+
     
     # Weight conversion examples
-    print("\nWeight Conversion Examples:")
-    print(f"1 kg = {Weight.convert(1, 'kg', 'lb'):.2f} lb.")  # Should be about 2.20 lb
-    print(f"1 lb = {Weight.convert(1, 'lb', 'g'):.2f} g.")  # Should be about 453.59 g
-    print(f"10 oz = {Weight.convert(10, 'oz', 'g'):.2f} g.")  # Should be about 283.50 g
-    print(f"1 ton = {Weight.convert(1, 'ton', 'uston'):.2f} US tons.")  # Should be about 1.10 US tons
+        print("\nWeight Conversion Examples:")
+        print(f"1 kg = {Weight.convert(1, 'kg', 'lb'):.2f} lb.")
+        print(f"1 lb = {Weight.convert(1, 'lb', 'g'):.2f} g.")
+        print(f"10 oz = {Weight.convert(10, 'oz', 'g'):.2f} g.")
+        print(f"1 ton = {Weight.convert(1, 'ton', 'uston'):.2f} US tons.")
     
     # Volume conversion examples
-    print("\nVolume Conversion Examples:")
-    print(f"1 L = {Volume.convert(1, 'L', 'gal'):.2f} gallons.")  # Should be about 0.26 gallons
-    print(f"1 gal = {Volume.convert(1, 'gal', 'L'):.2f} L.")  # Should be about 3.79 L
-    print(f"1 m³ = {Volume.convert(1, 'm³', 'L'):.2f} L.")  # Should be 1000 L
-    print(f"1 cup = {Volume.convert(1, 'cup', 'mL'):.2f} mL.")  # Should be about 240 mL
+        print("\nVolume Conversion Examples:")
+        print(f"1 L = {Volume.convert(1, 'L', 'gal'):.2f} gallons.")
+        print(f"1 gal = {Volume.convert(1, 'gal', 'L'):.2f} L.")
+        print(f"1 m³ = {Volume.convert(1, 'm³', 'L'):.2f} L.")
+        print(f"1 cup = {Volume.convert(1, 'cup', 'mL'):.2f} mL.")
+
+    #test()
+    print(f"left and right margins: {Length.convert(0.75, 'in', 'cm'):.2f} cm.")
+    print(f"column width: {Length.convert(3.375, 'in', 'cm'):.2f} cm.")
+    print(f": gap between columns: {Length.convert(0.25, 'in', 'cm'):.2f} cm.")
+    print(f": top margin first page: {Length.convert(1.375, 'in', 'cm'):.2f} cm.")
+    print(f": top margin other pages: {Length.convert(0.75, 'in', 'cm'):.2f} cm.")
+    print(f": bottom margin: : {Length.convert(1.25, 'in', 'cm'):.2f} cm.")
+    print(f": column height first page: {Length.convert(6.625, 'in', 'cm'):.2f} cm.")
+    print(f": column height other pages: {Length.convert(9, 'in', 'cm'):.2f} cm.")

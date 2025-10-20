@@ -1,6 +1,11 @@
 # Converters Documentation
 
-The `Converters.py` module implements specific converter instances using the base `Converter` class. Currently, it provides a Temperature converter with support for multiple temperature scales.
+The `Converters.py` module implements specific converter instances using the base `Converter` class. It provides four converter types:
+
+1. **Temperature** - Convert between various temperature scales
+2. **Length** - Convert between different units of length/distance
+3. **Weight** - Convert between different units of weight/mass
+4. **Volume** - Convert between different units of volume
 
 ## Temperature Converter
 
@@ -51,59 +56,160 @@ celsius_delta_to_fahrenheit = Temperature.convert(10, "ºC", "°F", delta=True)
 print(f"Delta of 10 ºC = Delta of {celsius_delta_to_fahrenheit:.2f} °F")
 ```
 
-## Creating Additional Converters
+## Length Converter
 
-You can easily extend the module by adding new converter instances for different unit types. Here are examples of how to implement additional converters:
+### Overview
 
-### Length Converter Example
+The Length converter allows conversion between various units of length or distance, including metric units (meters, kilometers, etc.) and imperial units (feet, inches, miles, etc.).
+
+### Implementation
 
 ```python
 from base_class import Converter
 
 Length = Converter({
     "m": (1, 0),      # meters (base unit)
-    "km": (1000, 0),  # kilometers
-    "cm": (0.01, 0),  # centimeters
-    "mm": (0.001, 0), # millimeters
-    "in": (0.0254, 0), # inches
-    "ft": (0.3048, 0), # feet
-    "yd": (0.9144, 0), # yards
-    "mi": (1609.34, 0) # miles
+    "km": (0.001, 0),  # kilometers (1 km = 1000 m, so scale factor is 0.001)
+    "cm": (100, 0),   # centimeters (1 m = 100 cm, so scale factor is 100)
+    "mm": (1000, 0),  # millimeters (1 m = 1000 mm, so scale factor is 1000)
+    "in": (39.3701, 0), # inches (1 m = 39.3701 in, so scale factor is 39.3701)
+    "ft": (3.28084, 0), # feet (1 m = 3.28084 ft, so scale factor is 3.28084)
+    "yd": (1.09361, 0), # yards (1 m = 1.09361 yd, so scale factor is 1.09361)
+    "mi": (0.000621371, 0) # miles (1 m = 0.000621371 mi, so scale factor is 0.000621371)
 })
 ```
 
-### Weight Converter Example
+### Supported Length Units
+
+| Unit | Symbol | Conversion from meters | Conversion to meters |
+|------|--------|------------------------|----------------------|
+| Meter | m | - | - |
+| Kilometer | km | km = m / 1000 | m = km * 1000 |
+| Centimeter | cm | cm = m * 100 | m = cm / 100 |
+| Millimeter | mm | mm = m * 1000 | m = mm / 1000 |
+| Inch | in | in = m * 39.3701 | m = in / 39.3701 |
+| Foot | ft | ft = m * 3.28084 | m = ft / 3.28084 |
+| Yard | yd | yd = m * 1.09361 | m = yd / 1.09361 |
+| Mile | mi | mi = m * 0.000621371 | m = mi / 0.000621371 |
+
+### Usage Examples
+
+```python
+from Converters import Length
+
+# Basic conversions
+meters_to_feet = Length.convert(1, "m", "ft")
+print(f"1 m = {meters_to_feet:.2f} ft")  # Output: 1 m = 3.28 ft
+
+miles_to_kilometers = Length.convert(1, "mi", "km")
+print(f"1 mi = {miles_to_kilometers:.2f} km")  # Output: 1 mi = 1.61 km
+
+inches_to_centimeters = Length.convert(10, "in", "cm")
+print(f"10 in = {inches_to_centimeters:.2f} cm")  # Output: 10 in = 25.40 cm
+```
+
+## Weight Converter
+
+### Overview
+
+The Weight converter allows conversion between various units of weight or mass, including metric units (kilograms, grams, etc.) and imperial units (pounds, ounces, etc.).
+
+### Implementation
 
 ```python
 from base_class import Converter
 
 Weight = Converter({
     "kg": (1, 0),      # kilograms (base unit)
-    "g": (0.001, 0),   # grams
-    "mg": (0.000001, 0), # milligrams
-    "lb": (0.453592, 0), # pounds
-    "oz": (0.0283495, 0), # ounces
-    "st": (6.35029, 0),  # stone
-    "ton": (1000, 0),    # metric ton
-    "uston": (907.185, 0) # US ton
+    "g": (1000, 0),    # grams (1 kg = 1000 g, so scale factor is 1000)
+    "mg": (1000000, 0), # milligrams (1 kg = 1,000,000 mg, so scale factor is 1,000,000)
+    "lb": (2.20462, 0), # pounds (1 kg = 2.20462 lb, so scale factor is 2.20462)
+    "oz": (35.274, 0),  # ounces (1 kg = 35.274 oz, so scale factor is 35.274)
+    "st": (0.157473, 0), # stone (1 kg = 0.157473 st, so scale factor is 0.157473)
+    "ton": (0.001, 0),   # metric ton (1 kg = 0.001 ton, so scale factor is 0.001)
+    "uston": (0.00110231, 0) # US ton (1 kg = 0.00110231 US ton, so scale factor is 0.00110231)
 })
 ```
 
-### Volume Converter Example
+### Supported Weight Units
+
+| Unit | Symbol | Conversion from kilograms | Conversion to kilograms |
+|------|--------|---------------------------|-------------------------|
+| Kilogram | kg | - | - |
+| Gram | g | g = kg * 1000 | kg = g / 1000 |
+| Milligram | mg | mg = kg * 1,000,000 | kg = mg / 1,000,000 |
+| Pound | lb | lb = kg * 2.20462 | kg = lb / 2.20462 |
+| Ounce | oz | oz = kg * 35.274 | kg = oz / 35.274 |
+| Stone | st | st = kg * 0.157473 | kg = st / 0.157473 |
+| Metric Ton | ton | ton = kg * 0.001 | kg = ton / 0.001 |
+| US Ton | uston | uston = kg * 0.00110231 | kg = uston / 0.00110231 |
+
+### Usage Examples
+
+```python
+from Converters import Weight
+
+# Basic conversions
+kilograms_to_pounds = Weight.convert(1, "kg", "lb")
+print(f"1 kg = {kilograms_to_pounds:.2f} lb")  # Output: 1 kg = 2.20 lb
+
+pounds_to_grams = Weight.convert(1, "lb", "g")
+print(f"1 lb = {pounds_to_grams:.2f} g")  # Output: 1 lb = 453.59 g
+
+ounces_to_grams = Weight.convert(10, "oz", "g")
+print(f"10 oz = {ounces_to_grams:.2f} g")  # Output: 10 oz = 283.50 g
+```
+
+## Volume Converter
+
+### Overview
+
+The Volume converter allows conversion between various units of volume, including metric units (liters, milliliters, etc.) and imperial/US units (gallons, quarts, etc.).
+
+### Implementation
 
 ```python
 from base_class import Converter
 
 Volume = Converter({
     "L": (1, 0),        # liters (base unit)
-    "mL": (0.001, 0),   # milliliters
-    "m³": (1000, 0),    # cubic meters
-    "gal": (3.78541, 0), # US gallons
-    "qt": (0.946353, 0), # US quarts
-    "pt": (0.473176, 0), # US pints
-    "fl_oz": (0.0295735, 0), # US fluid ounces
-    "cup": (0.24, 0)    # US cups
+    "mL": (1000, 0),    # milliliters (1 L = 1000 mL, so scale factor is 1000)
+    "m³": (0.001, 0),   # cubic meters (1 L = 0.001 m³, so scale factor is 0.001)
+    "gal": (0.264172, 0), # US gallons (1 L = 0.264172 gal, so scale factor is 0.264172)
+    "qt": (1.05669, 0),  # US quarts (1 L = 1.05669 qt, so scale factor is 1.05669)
+    "pt": (2.11338, 0),  # US pints (1 L = 2.11338 pt, so scale factor is 2.11338)
+    "fl_oz": (33.814, 0), # US fluid ounces (1 L = 33.814 fl_oz, so scale factor is 33.814)
+    "cup": (4.16667, 0)  # US cups (1 L = 4.16667 cups, so scale factor is 4.16667)
 })
+```
+
+### Supported Volume Units
+
+| Unit | Symbol | Conversion from liters | Conversion to liters |
+|------|--------|------------------------|----------------------|
+| Liter | L | - | - |
+| Milliliter | mL | mL = L * 1000 | L = mL / 1000 |
+| Cubic Meter | m³ | m³ = L * 0.001 | L = m³ / 0.001 |
+| US Gallon | gal | gal = L * 0.264172 | L = gal / 0.264172 |
+| US Quart | qt | qt = L * 1.05669 | L = qt / 1.05669 |
+| US Pint | pt | pt = L * 2.11338 | L = pt / 2.11338 |
+| US Fluid Ounce | fl_oz | fl_oz = L * 33.814 | L = fl_oz / 33.814 |
+| US Cup | cup | cup = L * 4.16667 | L = cup / 4.16667 |
+
+### Usage Examples
+
+```python
+from Converters import Volume
+
+# Basic conversions
+liters_to_gallons = Volume.convert(1, "L", "gal")
+print(f"1 L = {liters_to_gallons:.2f} gallons")  # Output: 1 L = 0.26 gallons
+
+gallons_to_liters = Volume.convert(1, "gal", "L")
+print(f"1 gal = {gallons_to_liters:.2f} L")  # Output: 1 gal = 3.79 L
+
+cubic_meters_to_liters = Volume.convert(1, "m³", "L")
+print(f"1 m³ = {cubic_meters_to_liters:.2f} L")  # Output: 1 m³ = 1000.00 L
 ```
 
 ## Best Practices for Creating Converters
