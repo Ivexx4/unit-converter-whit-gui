@@ -40,5 +40,5 @@ jobs:
           echo "Files:"
           dir
       - name: Run tests
-        run:
+        run:|
           python -m pytest -v tests/
