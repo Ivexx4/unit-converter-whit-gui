@@ -74,7 +74,6 @@ Volume = Converter({
     "cup": (4.16667, 0)  # US cups (1 L = 4.16667 cups, so scale factor is 4.16667)
 })
 if __name__ == "__main__":
-    def test():
     # Temperature conversion examples
         print("\nTemperature Conversion Examples:")
         print(f"75 ºD = {Temperature.convert(75, "ºD", "ºC"):.2f}°C.")
@@ -106,5 +105,3 @@ if __name__ == "__main__":
         print(f"1 gal = {Volume.convert(1, 'gal', 'L'):.2f} L.")
         print(f"1 m³ = {Volume.convert(1, 'm³', 'L'):.2f} L.")
         print(f"1 cup = {Volume.convert(1, 'cup', 'mL'):.2f} mL.")
-
-    test()
