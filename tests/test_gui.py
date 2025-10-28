@@ -1,4 +1,5 @@
 # python
+# -*- coding: utf-8 -*-
 import unittest
 import tkinter as tk
 from tkinter import ttk
