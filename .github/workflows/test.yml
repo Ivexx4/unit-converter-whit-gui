@@ -28,7 +28,7 @@ jobs:
 
       - name: Verify Tkinter availability
         run: |
-          python -c "import tkinter; print('Tkinter OK ✅')"
+          python -c "import tkinter; print('Tkinter OK ')"
 
       - name: Install pytest
         run: |
