@@ -36,6 +36,6 @@ jobs:
           pip install pytest
 
       - name: Run tests
-  run: |
-    cd ${{ github.workspace }}
-    pytest -v tests/
+        run: |
+        cd ${{ github.workspace }}
+        pytest -v tests/
