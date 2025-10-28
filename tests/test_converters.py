@@ -1,5 +1,6 @@
 # python
 # File: tests/test_converters.py
+# -*- coding: utf-8 -*-
 import pytest
 
 Converters = pytest.importorskip("Converters")
