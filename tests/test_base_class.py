@@ -1,5 +1,4 @@
 # python
-# -*- coding: utf-8 -*-
 import pytest
 
 base_class = pytest.importorskip("base_class")

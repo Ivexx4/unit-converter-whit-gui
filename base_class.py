@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from numbers import Number
 from typing import Union, Tuple, Dict, List
 
