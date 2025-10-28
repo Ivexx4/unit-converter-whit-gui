@@ -33,7 +33,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest
-
+      - name: Debug workspace
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files:"
+          di- name: Debug workspace
       - name: Run tests
         run: |
           cd ${{ github.workspace }}
