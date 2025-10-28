@@ -1,5 +1,4 @@
----
-name: Test unit-converter-whit-gui
+name: Test unit-converter-with-gui
 
 on:
   push:
@@ -10,25 +9,25 @@ jobs:
   test:
     name: "Tests on Python ${{ matrix.python-version }}"
     runs-on: windows-latest
+
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.6","3.7","3.8","3.9","3.10","3.11","3.12","3.13"]
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           repository: Ivexx4/unit-converter-whit-gui
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Verify Tkinter availability
-        run: |
-          python -c "import tkinter; print('Tkinter OK ')"
+        run: python -c "import tkinter; print('Tkinter OK')"
 
       - name: Install pytest
         run: |
@@ -37,5 +36,5 @@ jobs:
 
       - name: Run tests
         run: |
-        cd ${{ github.workspace }}
-        pytest -v tests/
+          cd ${{ github.workspace }}
+          pytest -v tests/
