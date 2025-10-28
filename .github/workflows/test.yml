@@ -38,8 +38,7 @@ jobs:
           echo "Current directory:"
           pwd
           echo "Files:"
-          di- name: Debug workspace
+          dir
       - name: Run tests
-        run: |
-          cd ${{ github.workspace }}
+        run:
           pytest -v tests/
