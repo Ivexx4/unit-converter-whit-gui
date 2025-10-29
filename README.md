@@ -55,25 +55,35 @@ A flexible and extensible unit conversion library with a graphical user interfac
 
 ### Test Environment
 
-The application has been tested in the following environments:
+## 🧪 Testing Environment
 
-- **Operating System**: Windows 11
-- **Python Version**: 3.13.7
-- **Python Libraries**:
-  - Tkinter (included with Python)
-  - pytest (for automatic testing)
-  - No additional external libraries were required for testing
-- **IDE/Editor**: PyCharm
-- **Testing Method**:
-  - **Manual Testing**: 
-    - Via the GUI and command line interface
-  - **Automated Testing**: 
-    - Using `pytest` for unit and integration tests to ensure functionality across different modules.
-- **Virtual Environment**:
-  - Testing was done within a **conda environment**:
-    - Environment name: `unit-converter-env`
-    - Created with: `conda create --name unit-converter-env python=3.13.7`
-    - Dependencies: Standard Python libraries, `pytest`, and `tkinter` (included with Python)
+### Manual Testing
+The project was manually tested in the following environment:
+
+- **Operating System:** Windows 11  
+- **Python Version:** 3.13.7  
+- **Python Libraries:**  
+  - `Tkinter` (included with Python)  
+  - `pytest` (for automated testing)  
+- **Notes:**  
+  No additional external libraries were required for testing.
+
+---
+
+### Automated Testing (GitHub Actions)
+Continuous Integration (CI) was configured using **GitHub Workflows** to ensure cross-platform and multi-version compatibility.  
+The test matrix used was:
+
+```yaml
+matrix:
+  os: [ubuntu-latest, windows-latest, macos-latest]
+  python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+  include:
+    # Add Python 3.6 and 3.7 only for Windows
+    - os: windows-latest
+      python-version: "3.6"
+    - os: windows-latest
+      python-version: "3.7"
 
 ### Installation
 
