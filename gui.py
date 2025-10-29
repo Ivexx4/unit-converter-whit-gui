@@ -8,8 +8,7 @@ with support for temperature, length, weight, and volume conversions.
 
 import tkinter as tk
 from tkinter import ttk, messagebox
-from Converters import *
-
+import Converters
 class ConverterGUI:
     """
     A graphical user interface for the unit converter library.
@@ -488,16 +487,14 @@ def main():
     """
     Main function to run the GUI application.
     """
-    converters ={
-        "Temperature": Temperature,
-        "Length": Length,
-        "Weight": Weight,
-        "Volume": Volume
+    converters = {
+        name: obj
+        for name, obj in vars(Converters).items()
+        if isinstance(obj, Converters.Converter)
     }
     root = tk.Tk()
     app = ConverterGUI(root,converters)
     root.mainloop()
 
 if __name__ == "__main__":
-
     main()
