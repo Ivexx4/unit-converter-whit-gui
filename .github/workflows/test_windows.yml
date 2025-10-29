@@ -1,4 +1,4 @@
-name: Test unit-converter-with-gui
+name: Windows Test unit-converter-with-gui
 
 on:
   push:
