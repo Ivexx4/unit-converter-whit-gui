@@ -110,4 +110,5 @@ if __name__ == "__main__":
         print(f"1 L = {Volume.convert(1, 'L', 'gal'):.2f} gallons.")
         print(f"1 gal = {Volume.convert(1, 'gal', 'L'):.2f} L.")
         print(f"1 m³ = {Volume.convert(1, 'm³', 'L'):.2f} L.")
-        print(f"1 cup = {Volume.convert(1, 'cup', 'mL'):.2f} mL.")
+        print(f"1 cup = {Volume.convert(1, 'cup', 'mL'):.2f} mL.") 
+        print(__all__)
