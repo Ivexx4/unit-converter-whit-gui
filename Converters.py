@@ -38,14 +38,47 @@ Temperature = Converter({
 # Length converter - Converts between different units of length/distance (meters, feet, inches, etc.)
 # Base unit: Meter (m) with scale factor 1 and offset 0
 Length = Converter({
-    "m": (1, 0),      # meters (base unit)
-    "km": (0.001, 0),  # kilometers (1 km = 1000 m, so scale factor is 0.001)
-    "cm": (100, 0),   # centimeters (1 m = 100 cm, so scale factor is 100)
-    "mm": (1000, 0),  # millimeters (1 m = 1000 mm, so scale factor is 1000)
-    "in": (39.3701, 0), # inches (1 m = 39.3701 in, so scale factor is 39.3701)
-    "ft": (3.28084, 0), # feet (1 m = 3.28084 ft, so scale factor is 3.28084)
-    "yd": (1.09361, 0), # yards (1 m = 1.09361 yd, so scale factor is 1.09361)
-    "mi": (0.000621371, 0) # miles (1 m = 0.000621371 mi, so scale factor is 0.000621371)
+    "m": (1, 0),
+    "dam":(0.1, 0),
+    "hm": (0.01, 0),
+    "Mm": (1e-6, 0),
+    "Gm": (1e-9, 0),
+    "Tm": (1e-12, 0),
+    "Pm": (1e-15, 0),
+    "ma": (1e18, 0),
+    "Zm": (1e-21, 0),
+    "Em": (1e-18, 0),
+    "Ym": (1e-24, 0),
+    "km": (0.001, 0),
+    "dm": (10, 0),
+    "cm": (100, 0),
+    "mm": (1000, 0),
+    "µm": (1e6, 0),
+    "nm": (1e9, 0),
+    "pm": (1e12, 0),
+    "fm": (1e15, 0),
+    "am": (1e18, 0),
+    "ym": (1e21, 0),
+    "zm": (1e24, 0),
+    "in": (39.3700787, 0),
+    "ft": (3.2808399, 0),
+    "yd": (1.0936133, 0),
+    "mi": (0.000621371192, 0),
+    "nmi": (1/1852, 0),
+    "au": (1/1.495978707e11, 0),
+    "ly": (1/9.4607e15, 0),
+    "pc": (1/3.085677581e16, 0),
+    "kpc": (1/3.085677581e19, 0),
+    "Mpc": (1/3.085677581e22, 0),
+    "Gpc": (1/3.085677581e25, 0),
+    "Tpc": (1/3.085677581e28, 0),
+    "Ppc": (1/3.085677581e31, 0),
+    "Epc": (1/3.085677581e34, 0),
+    "Zpc": (1/3.085677581e37, 0),
+    "Ypc": (1/3.085677581e40, 0),
+    "fath": (1/1.8288, 0)  ,
+    "ch": (1/20.1168, 0),
+    "lea": (1/5556, 0)
 })
 
 # Weight converter - Converts between different units of weight/mass (kilograms, pounds, ounces, etc.)
@@ -74,11 +107,6 @@ Volume = Converter({
     "cup": (4.16667, 0)  # US cups (1 L = 4.16667 cups, so scale factor is 4.16667)
 })
 
-__all__ = [
-    name
-    for name, obj in globals().items()
-    if isinstance(obj, Converter) and obj is not Converter
-]
 if __name__ == "__main__":
     # Temperature conversion examples
         print("\nTemperature Conversion Examples:")
@@ -111,4 +139,4 @@ if __name__ == "__main__":
         print(f"1 gal = {Volume.convert(1, 'gal', 'L'):.2f} L.")
         print(f"1 m³ = {Volume.convert(1, 'm³', 'L'):.2f} L.")
         print(f"1 cup = {Volume.convert(1, 'cup', 'mL'):.2f} mL.") 
-        print(__all__)
+
