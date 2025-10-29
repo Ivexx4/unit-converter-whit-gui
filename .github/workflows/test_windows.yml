@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: "Tests on Python ${{ matrix.python-version }@windows}"
+    name: "Tests on Python ${ matrix.python-version }@windows"
     runs-on: windows-latest
 
     strategy:
