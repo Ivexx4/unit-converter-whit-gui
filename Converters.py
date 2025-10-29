@@ -76,13 +76,13 @@ Volume = Converter({
 if __name__ == "__main__":
     # Temperature conversion examples
         print("\nTemperature Conversion Examples:")
-        print(f"75 ºD = {Temperature.convert(75, "ºD", "ºC"):.2f}°C.")
-        print(f"32 ºF = {Temperature.convert(32, "°F", "ºC"):.2f}°C.")
+        print(f"75 ºD = {Temperature.convert(75, 'ºD', 'ºC'):.2f}°C.")
+        print(f"32 ºF = {Temperature.convert(32, '°F', 'ºC'):.2f}°C.")
         print(f"300 K = {Temperature.convert(300, 'K', '°F'):.2f}°F.")
-        print(f"25 ºC = {Temperature.convert(25, "ºC", "ºR"):.2f}°R.")
-        print(f"10 ºRe = {Temperature.convert(10, "ºRe", "K"):.2f} K.")
-        print(f"10 ºD = {Temperature.convert(10, "ºD", 'ºN'):.2f}°N.")
-        print(f"10 ºRø = {Temperature.convert(10, 'ºRø', "ºC"):.2f}°C.")
+        print(f"25 ºC = {Temperature.convert(25, 'ºC', 'ºR'):.2f}°R.")
+        print(f"10 ºRe = {Temperature.convert(10, 'ºRe', 'K'):.2f} K.")
+        print(f"10 ºD = {Temperature.convert(10, 'ºD', 'ºN'):.2f}°N.")
+        print(f"10 ºRø = {Temperature.convert(10, 'ºRø', 'ºC'):.2f}°C.")
     
     # Length conversion examples
         print("\nLength Conversion Examples:")
