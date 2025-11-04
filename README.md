@@ -5,42 +5,13 @@ A flexible and extensible unit conversion library with a graphical user interfac
 ## Features
 
 - **Modular Design**: Base converter class that can be extended for any unit type.
-- **Temperature Conversion**: Convert between multiple temperature scales:
-  - Celsius (ºC)
-  - Fahrenheit (°F)
-  - Kelvin (K)
-  - Rankine (ºR)
-  - Delisle (ºD)
-  - Réaumur (ºRe)
-  - Newton (ºN)
-  - Rømer (ºRø)
-- **Length Conversion**: Convert between various units of length:
-  - Meter (m)
-  - Kilometer (km)
-  - Centimeter (cm)
-  - Millimeter (mm)
-  - Inch (in)
-  - Foot (ft)
-  - Yard (yd)
-  - Mile (mi)
-- **Weight Conversion**: Convert between various units of weight/mass:
-  - Kilogram (kg)
-  - Gram (g)
-  - Milligram (mg)
-  - Pound (lb)
-  - Ounce (oz)
-  - Stone (st)
-  - Metric Ton (ton)
-  - US Ton (uston)
-- **Volume Conversion**: Convert between various units of volume:
-  - Liter (L)
-  - Milliliter (mL)
-  - Cubic Meter (m³)
-  - US Gallon (gal)
-  - US Quart (qt)
-  - US Pint (pt)
-  - US Fluid Ounce (fl_oz)
-  - US Cup (cup)
+- **Temperature Conversion**: Convert between multiple temperature scales (Celsius, Fahrenheit, Kelvin, Rankine, Réaumur etc...)
+- **Length Conversion**: Convert between multiple length scales (meters, feet, miles, kilometers, inches, yards, nautical miles etc...)
+- **Weight Conversion**: Convert between multiple weight scales (grams, kilograms, pounds, ounces, stones, metric tons etc...)
+- **Volume Conversion**: Convert between multiple volume scales (liters, gallons, cups, pints, quarts, fluid ounces etc...)
+- **Area Conversion**: Convert between multiple area scales (square meters, square feet, square miles, square kilometers, square inches, square yards, square nautical miles etc...)
+- **Volume Conversion**: Convert between multiple volume scales (cubic meters, cubic feet, cubic miles, cubic kilometers, cubic inches, cubic yards, cubic nautical miles etc...)
+
 - **User-friendly GUI**: Tkinter-based interface with:
   - Input validation
   - Unit swapping

@@ -820,36 +820,5 @@ Area = Converter({
     "circular-mil": (1 / 5.067e-10, 0),  # Circular Mil
 })
 
-if __name__ == "__main__":
-    # Temperature conversion examples
-        print("\nTemperature Conversion Examples:")
-        print(f"75 ºD = {Temperature.convert(75, 'ºD', 'ºC'):.2f}°C.")
-        print(f"32 ºF = {Temperature.convert(32, '°F', 'ºC'):.2f}°C.")
-        print(f"300 K = {Temperature.convert(300, 'K', '°F'):.2f}°F.")
-        print(f"25 ºC = {Temperature.convert(25, 'ºC', 'ºR'):.2f}°R.")
-        print(f"10 ºRe = {Temperature.convert(10, 'ºRe', 'K'):.2f} K.")
-        print(f"10 ºD = {Temperature.convert(10, 'ºD', 'ºN'):.2f}°N.")
-        print(f"10 ºRø = {Temperature.convert(10, 'ºRø', 'ºC'):.2f}°C.")
-    
-    # Length conversion examples
-        print("\nLength Conversion Examples:")
-        print(f"1 m = {Length.convert(1, 'm', 'ft'):.2f} ft.")
-        print(f"1 mi = {Length.convert(1, 'mi', 'km'):.2f} km.")
-        print(f"10 in = {Length.convert(10, 'in', 'cm'):.2f} cm.")
-        print(f"100 yd = {Length.convert(100, 'yd', 'm'):.2f} m.")
 
-    
-    # Weight conversion examples
-        print("\nWeight Conversion Examples:")
-        print(f"1 kg = {Weight.convert(1, 'kg', 'lb'):.2f} lb.")
-        print(f"1 lb = {Weight.convert(1, 'lb', 'g'):.2f} g.")
-        print(f"10 oz = {Weight.convert(10, 'oz', 'g'):.2f} g.")
-        print(f"1 ton = {Weight.convert(1, 'ton', 'uston'):.2f} US tons.")
-    
-    # Volume conversion examples
-        print("\nVolume Conversion Examples:")
-        print(f"1 L = {Volume.convert(1, 'L', 'gal'):.2f} gallons.")
-        print(f"1 gal = {Volume.convert(1, 'gal', 'L'):.2f} L.")
-        print(f"1 m³ = {Volume.convert(1, 'm³', 'L'):.2f} L.")
-        print(f"1 cup = {Volume.convert(1, 'cup', 'mL'):.2f} mL.") 
 
