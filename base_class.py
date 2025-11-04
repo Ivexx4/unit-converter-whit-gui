@@ -1,5 +1,6 @@
 from numbers import Number
 from typing import Union, Tuple, Dict, List
+from collections.abc import Iterable, MutableMapping,MutableSequence,MutableSet
 
 
 class Converter:
@@ -60,34 +61,59 @@ class Converter:
             else:
                 raise TypeError(f"The value for '{unit}' must be a valid number, list of two numbers, or a tuple of two numbers.")
 
-
-    def convert(self, value, origin_unit, final_unit, delta=False):
+    def convert(self, value, origin_unit, final_unit, delta=False, inplace=False):
         """
-        Convert a value from one unit to another.
-        
-        This method converts a value from the origin unit to the final unit.
-        It can handle both absolute conversions and delta/interval conversions.
-        
-        Args:
-            value (Number): The numeric value to convert
-            origin_unit (str): The source unit (must be a key in the units dictionary)
-            final_unit (str): The target unit (must be a key in the units dictionary)
-            delta (bool, optional): Flag indicating whether this is a delta/interval conversion.
-                When True, only the scale factor is used (offsets are ignored).
-                When False (default), both scale factor and offset are applied.
-                
-        Returns:
-            float: The converted value
-            
-        Raises:
-            ValueError: If either the origin or final unit is not in the units dictionary
-            
-        Examples:
-            >>> temp_converter = Converter({"°C": (1, 0), "°F": (1.8, 32)})
-            >>> temp_converter.convert(25, "°C", "°F")
-            77.0
-            >>> temp_converter.convert(10, "°C", "°F", delta=True)
-            18.0
+            Converts a value or collection (number, string, dict, list, iterable) from one unit to another, optionally as a delta or in place; raises TypeError for unsupported types or invalid strings.
+            """
+        if isinstance(value,str):
+            try:
+                value=float(value)
+            except ValueError:
+                raise TypeError("type not supported")
+        if isinstance(value, Number):
+            return self._single_convertion(value, origin_unit, final_unit, delta)
+        elif isinstance(value, MutableMapping):
+            return self._dict_convertion(value, origin_unit, final_unit, delta,inplace)
+        elif isinstance(value, MutableSequence):
+            return self._mut_sequence_convertion(value, origin_unit, final_unit, delta,inplace)
+        elif isinstance(value, Iterable):
+            return self._imut_iterable_convertion(value, origin_unit, final_unit, delta)
+        else:
+            raise TypeError("type not supported")
+
+    def _mut_sequence_convertion(self, value: Iterable, origin_unit: str, final_unit: str, delta,inplace):
+        """
+        Converts each element in an mutable iterable from the origin unit to the final unit.
+        Returns the iterable of the same type as the input.
+        """
+        converted_values = [self._single_convertion(val, origin_unit, final_unit, delta) for val in value]
+        if inplace:
+            value[:] = converted_values
+            return value
+        else:
+            return converted_values
+
+    def _dict_convertion(self,value, origin_unit, final_unit, delta,inplace):
+        """
+                Converts all values in the dictionary from the origin unit to the final unit.
+                """
+        converted_dict = {key: self._single_convertion(val, origin_unit, final_unit, delta) for key, val in value.items()}
+        if inplace:
+            value.update(converted_dict)
+            return value
+        return converted_dict
+
+    def _imut_iterable_convertion(self, value: Iterable, origin_unit: str, final_unit: str, delta):
+        """
+        Converts each element in an immutable iterable from the origin unit to the final unit.
+        Returns the iterable of the same type as the input.
+        """
+        converted_values = [self._single_convertion(val, origin_unit, final_unit, delta) for val in value]
+        return type(value)(converted_values)  # Return the iterable of the same type
+
+    def _single_convertion(self, value, origin_unit, final_unit, delta=False):
+        """
+        Convert a single value from one unit to another.
         """
         # Check if both units are valid
         if origin_unit not in self.units.keys() or final_unit not in self.units.keys():
